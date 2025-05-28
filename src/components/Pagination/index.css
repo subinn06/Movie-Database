@@ -1,0 +1,16 @@
+.page-no-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #053964;
+  color: #ffffff;
+  gap: 10px;
+}
+
+.control-btn {
+  background-color: rgba(81, 238, 238, 0.867);
+  color: #053964;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 5px;
+}
