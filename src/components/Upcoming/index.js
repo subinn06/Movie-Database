@@ -7,7 +7,7 @@ import Pagination from '../Pagination'
 
 import './index.css'
 
-class UpcomingMovies extends React.Component {
+class Upcoming extends React.Component {
   state = {
     isLoading: true,
     upcomingMovieResponse: {},
@@ -17,22 +17,24 @@ class UpcomingMovies extends React.Component {
     this.getUpcomingMoviesResponse()
   }
 
+  getUpdatedData = responseData => ({
+    totalPages: responseData.total_pages,
+    totalResults: responseData.total_results,
+    results: responseData.results.map(eachMovie => ({
+      id: eachMovie.id,
+      posterPath: `https://image.tmdb.org/t/p/w500${eachMovie.poster_path}`,
+      voteAverage: eachMovie.vote_average,
+      title: eachMovie.title,
+    })),
+  })
+
   getUpcomingMoviesResponse = async (page = 1) => {
-    const API_KEY = 'ffdf27c347d3d6c9bc9e3eda7457a5dd'
+    const API_KEY = 'f32b79895b21468afbdd6d5342cbf3da'
     const apiUrl = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=${page}`
     const response = await fetch(apiUrl)
     const data = await response.json()
-    const updatedData = {
-      totalPages: data.total_pages,
-      totalResults: data.total_results,
-      results: data.results.map(eachMovie => ({
-        id: eachMovie.id,
-        posterPath: `https://image.tmdb.org/t/p/w500${eachMovie.poster_path}`,
-        voteAverage: Number(eachMovie.vote_average.toFixed(1)),
-        title: eachMovie.title,
-      })),
-    }
-    this.setState({isLoading: false, upcomingMovieResponse: updatedData})
+    const newData = this.getUpdatedData(data)
+    this.setState({isLoading: false, upcomingMovieResponse: newData})
   }
 
   renderLoadingView = () => (
@@ -46,7 +48,7 @@ class UpcomingMovies extends React.Component {
     const {results} = upcomingMovieResponse
 
     return (
-      <ul className="upcoming-movies-list">
+      <ul className="row p-0 ms-0 me-0 mt-3">
         {results.map(movie => (
           <MovieCard key={movie.id} movieDetails={movie} />
         ))}
@@ -74,4 +76,4 @@ class UpcomingMovies extends React.Component {
   }
 }
 
-export default UpcomingMovies
+export default Upcoming

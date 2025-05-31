@@ -8,11 +8,11 @@ import SearchMoviesContext from '../../context/SearchMoviesContext'
 
 import './index.css'
 
-const SearchedMovies = () => {
+const SearchQuery = () => {
   const renderEmptyView = () => (
     <div className="empty-view-container">
-      <h1>No results found</h1>
-      <p>Try another Movie name</p>
+      <h1>No results found.</h1>
+      <p>Don not get worried, Try to search again.</p>
     </div>
   )
 
@@ -23,7 +23,7 @@ const SearchedMovies = () => {
       return renderEmptyView()
     }
     return (
-      <ul className="searched-movies-list">
+      <ul className="row p-0 ms-0 me-0 mt-3">
         {results.map(movie => (
           <MovieCard key={movie.id} movieDetails={movie} />
         ))}
@@ -72,4 +72,4 @@ const SearchedMovies = () => {
   )
 }
 
-export default SearchedMovies
+export default SearchQuery

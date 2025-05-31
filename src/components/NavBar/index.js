@@ -24,16 +24,16 @@ const NavBar = props => {
         }
 
         return (
-          <div className="search-container">
+          <div className="d-flex align-items-center">
             <input
               type="text"
-              className="search-input"
+              className="me-2 search-input"
               onChange={onChangeHandler}
               value={searchInput}
               placeholder="Search"
             />
             <button
-              className="search-bt"
+              className="btn btn-outline-info"
               type="button"
               onClick={onSearchHandler}
             >
@@ -46,13 +46,12 @@ const NavBar = props => {
   )
 
   return (
-    <nav className="navbar-container">
+    <nav className="navbar-container d-flex align-items-center p-3">
       <div className="logo-container">
         <h1 className="page-logo">movieDB</h1>
       </div>
-      <div className="search-and-list-container">
-        {renderSearchBar()}
-        <ul className="nav-items-list">
+      <div className="ms-auto d-flex align-items-center">
+        <ul className="order-1 d-flex align-items-center p-0 mb-0 ms-3 nav-items-list">
           <li className="nav-item">
             <Link className="nav-link" to="/">
               Popular
@@ -69,6 +68,7 @@ const NavBar = props => {
             </Link>
           </li>
         </ul>
+        {renderSearchBar()}
       </div>
     </nav>
   )

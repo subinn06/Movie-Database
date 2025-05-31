@@ -1,18 +1,18 @@
 import {useState} from 'react'
 import {Route, Switch} from 'react-router-dom'
 
-import PopularMovies from './components/PopularMovies'
-import TopRatedMovies from './components/TopRatedMovies'
-import UpcomingMovies from './components/UpcomingMovies'
-import SearchedMovies from './components/SearchedMovies'
-import SingleMovie from './components/SingleMovie'
+import Popular from './components/Popular'
+import TopRated from './components/TopRated'
+import Upcoming from './components/Upcoming'
+import SearchQuery from './components/SearchQuery'
 
 import SearchMoviesContext from './context/SearchMoviesContext'
 
 import './App.css'
 
-const API_KEY = 'ffdf27c347d3d6c9bc9e3eda7457a5dd'
+const API_KEY = 'f32b79895b21468afbdd6d5342cbf3da'
 
+// write your code here
 const App = () => {
   const [searchResponse, setSearchResponse] = useState({})
   const [apiStatus, setApiStatus] = useState('INITIAL')
@@ -51,13 +51,12 @@ const App = () => {
         onChangeSearchInput,
       }}
     >
-      <div>
+      <div className="App d-flex flex-column">
         <Switch>
-          <Route exact path="/" component={PopularMovies} />
-          <Route exact path="/top-rated" component={TopRatedMovies} />
-          <Route exact path="/upcoming" component={UpcomingMovies} />
-          <Route exact path="/search" component={SearchedMovies} />
-          <Route exact path="/movie/:id" component={SingleMovie} />
+          <Route exact path="/" component={Popular} />
+          <Route exact path="/top-rated" component={TopRated} />
+          <Route exact path="/upcoming" component={Upcoming} />
+          <Route exact path="/search" component={SearchQuery} />
         </Switch>
       </div>
     </SearchMoviesContext.Provider>
